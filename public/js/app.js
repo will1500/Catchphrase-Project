@@ -1,9 +1,21 @@
 // On page load
 $(function() {
   getFoods();
+  // set submit action for form
+  $("#new-food-form").on("submit", function(e){
+    // prevent form submission
+    e.preventDefault();
+    // post to food#create
+    $.post("/foods", $(this).serialize())
+      .done(function(res){
+        // append new food to the page
+        getFoods();
+        $("#new-food-form")[0].reset();
+      });
+  });
 });
 
-// Function definitions
+// function definitions
 function getFoods() {
   $.get("/foods", function(res){ 
     var foods = JSON.parse(res);
