@@ -22,6 +22,11 @@ var foods =[
 ];
 
 // ROUTES //
-//get to root should render index.html
+app.get("/", function (req, res){
+  // render index.html
+  res.sendFile(path.join(views + 'index.html'));
+});
 
-//start server on port 3000
+app.listen(3000, function (){
+  console.log("listening on port 3000");
+});
