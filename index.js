@@ -27,6 +27,12 @@ app.get("/", function (req, res){
   res.sendFile(path.join(views + 'index.html'));
 });
 
+// foods index path
+app.get("/foods", function (req, res){
+  // render foods index as JSON
+  res.send(JSON.stringify(foods));
+});
+
 app.listen(3000, function (){
   console.log("listening on port 3000");
 });
