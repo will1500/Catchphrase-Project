@@ -22,6 +22,27 @@ var foods =[
 ];
 
 // ROUTES //
-//get to root should render index.html
+app.get("/", function (req, res){
+  // render index.html
+  res.sendFile(path.join(views + 'index.html'));
+});
 
-//start server on port 3000
+// foods index path
+app.get("/foods", function (req, res){
+  // render foods index as JSON
+  res.send(JSON.stringify(foods));
+});
+
+app.post("/foods", function (req, res){
+  var newFood = req.body;
+  // add a unique id
+  newFood.id = foods[foods.length - 1].id + 1;
+  // add new food to DB (array, really...)
+  foods.push(newFood);
+  // send a response with newly created object
+  res.send(newFood);
+});
+
+app.listen(3000, function (){
+  console.log("listening on port 3000");
+});
