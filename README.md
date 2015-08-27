@@ -1,5 +1,7 @@
 # Bite Me
-Can you modify this CRUD app to use MongoDB?
+This app has RESTful routes for the following actions: Index, Create, Destroy.
+
+Can you modify this app to incorporate MongoDB instead of the hardcoded data?
 
 ## Setup
 
@@ -17,7 +19,7 @@ nodemon index.js
 
 ## Instructions
 
-Our foods data is currently hardcoded in `index.js` and lives in active memory. When the server restarts, we lose our data. Your goal is integrate MongoDB into your routes so that you can permenantely save/persist data across sessions.
+Our foods data is currently hardcoded in our main `index.js` and lives in active memory. When the server restarts, we lose our data. Your goal is integrate MongoDB into your routes so that you can permenantely save/persist data across sessions.
 
 By the end of this process we should have the following application directory (note the `models` folder):
 ```
