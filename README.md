@@ -34,7 +34,7 @@ touch models/food.js;
 ```
 
 
-Let's create `Food` model. A `Food` has a few different characteristics: `title`, `author`, and `description`.
+Let's create `Food` model. A `Food` has a few different characteristics: `name`, and `yumminess`.
 
 To create a `Food` model we have to use a Schema:
 
