@@ -19,6 +19,25 @@ nodemon index.js
 
 Our foods data is currently hardcoded in `index.js` and lives in active memory. When the server restarts, we lose our data. Your goal is integrate MongoDB into your routes so that you can permenantely save/persist data across sessions.
 
+By the end of this process we should have the following application directory (note the `models` folder):
+```
+    models/
+        index.js
+        food.js
+    public/
+        css/
+            main.css
+        js/
+            app.js
+    views/
+        index.html
+    .gitignore
+    bower.json
+    index.js
+    package.json
+    README.md    
+```
+
 #### Step 1. Create the Food Model / Schema
 
 Install mongoose:
@@ -29,8 +48,8 @@ npm install --save mongoose
 
 Next we want to create our models directory (this is where our database magic will happen):
 ``` bash
-mkdir models;
-touch models/food.js;
+mkdir models
+touch models/food.js
 ```
 
 
@@ -39,6 +58,8 @@ Let's create `Food` model. A `Food` has a few different characteristics: `name`,
 To create a `Food` model we have to use a Schema:
 
 ```javascript
+var mongoose = require("mongoose");
+
 var Schema = mongoose.Schema;
 var FoodSchema = new Schema({
     name: String,
@@ -48,7 +69,7 @@ var FoodSchema = new Schema({
 
 [Here is a link to all of the different datatypes we can use in a Schema](http://mongoosejs.com/docs/schematypes.html)
 
-Finally, we need to create the `Food` model and export it (that way we can use it in other parts of our app):
+Finally, at the bottom of `food.js` we need to create the `Food` model and export it (that way we can use it in other parts of our app):
 
 ```javascript
 var Food = mongoose.model('Food', FoodSchema);
@@ -59,7 +80,7 @@ module.exports = Food;
 Next, let's wire it all up:
 
 ``` bash
-touch models/index.js;
+touch models/index.js
 ```
 
 Inside of `models/index.js` we need to create and connect to our mongoose database (this is where the magic happens):
@@ -71,11 +92,11 @@ mongoose.connect("mongodb://localhost/bite_me_app");
 module.exports.Food = require("./food");
 ```
 
-#### Step 3. Plug the database into node
+#### Step 3. Sanity Check - Plug the database into node
 
 Now that we've done all the hard work, all that's left is to "require" our models.
 
-For example, as a sanity check, if you open the node REPL by typing `node` in the terminal, you can do the following:
+If you open the node REPL by typing `node` in the terminal, you can do the following:
 
 ``` bash
 var db = require('./models');
@@ -86,7 +107,7 @@ db.Food.create({name: "foo", tastiness: "very"}, function (err, food) {
 });
 ```
 
-Now you should be able to type the following, and see our new food:
+Now you should be able to type the following, and see our new food item:
 
 ``` javascript
     db.Food.find({}, function(err, foods){
