@@ -30,7 +30,7 @@ app.get("/", function (req, res){
 // foods index path
 app.get("/foods", function (req, res){
   // render foods index as JSON
-  res.send(JSON.stringify(foods));
+  res.send(foods);
 });
 
 app.post("/foods", function (req, res){
